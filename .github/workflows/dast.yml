@@ -27,6 +27,12 @@ jobs:
         target: 'https://github.com/pintoo-5/testrepo/'   # Replace with your app's URL
         report-path: './zap_report.html'  # Save the report in the root of your project
 
+
+    - name: Check artifact folder
+      run: |
+        echo "Files in build:"
+        ls -la ./build
+    
     - name: Upload ZAP scan report
       uses: actions/upload-artifact@v3
       with:
