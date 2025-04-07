@@ -16,10 +16,6 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Set up JDK (if needed for your application)
-      uses: actions/setup-java@v2
-      with:
-        java-version: '11'  # Specify your app's Java version if applicable
 
     - name: Run OWASP ZAP Security Scan
       uses: zaproxy/action-full-scan@v0.4.0
