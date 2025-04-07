@@ -24,7 +24,7 @@ jobs:
     - name: Run OWASP ZAP Security Scan
       uses: zaproxy/action-full-scan@v0.4.0
       with:
-        target: 'http://your-app-url.com'   # Replace with your app's URL
+        target: 'https://github.com/pintoo-5/testrepo/'   # Replace with your app's URL
         report-path: './zap_report.html'  # Save the report in the root of your project
 
     - name: Upload ZAP scan report
