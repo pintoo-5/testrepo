@@ -1,0 +1,40 @@
+name: DAST Scan with OWASP ZAP
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  zap-scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run OWASP ZAP Baseline Scan
+        uses: zaproxy/action-baseline@v0.9.0
+        with:
+          target: 'https://your-live-app-url.com'  # Replace with your live app URL
+          cmd_options: '-t 120'                    # Optional: scan timeout in seconds
+          fail_action: false                       # Don't auto-fail on findings
+
+      - name: zap-report
+        run: mv zap.out zap_report.html
+
+      - name: Upload ZAP scan report as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: zap-report
+          path: zap_report.html
+
+      - name: Fail if High risk vulnerabilities found
+        run: |
+          if grep -q "High" zap_report.html; then
+            echo "❌ High risk vulnerabilities found!"
+            exit 1
+          else
+            echo "✅ No high risk vulnerabilities found."
+          fi
