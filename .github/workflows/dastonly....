@@ -1,0 +1,14 @@
+# DAST (Dynamic Application Security Testing) job to scan running application
+dast:
+    image: node:16-bullseye
+    stage: dast
+    script:
+        - npm install
+        - npm start > /dev/null 2>&1 &
+        - apt-get update
+        - apt-get install -y perl git
+        - git clone https://github.com/sullo/nikto
+        - cd nikto/program && perl nikto.pl -h http://localhost:3000 -o $CI_PROJECT_DIR/dast-report.html
+    artifacts:
+        paths:
+            - dast-report.html
