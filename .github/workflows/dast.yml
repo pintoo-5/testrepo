@@ -17,3 +17,18 @@ jobs:
           target: 'https://www.zaproxy.org/'
           rules_file_name: '.zap/rules.tsv'
           cmd_options: '-a'
+
+      - name: Fail if High risk vulnerabilities found
+        run: |
+          if [ -f zap_report.html ]; then
+            if grep -iq "<td>High</td>" zap_report.html; then
+              echo "❌ High risk vulnerabilities found!"
+              exit 1
+            else
+              echo "✅ No high risk vulnerabilities found."
+            fi
+          else
+            echo "⚠️ ZAP report not found! Skipping check."
+            exit 1
+          fi
+
