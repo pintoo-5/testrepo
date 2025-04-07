@@ -1,14 +1,8 @@
-            - name: ZAP Automation Framework Scan
-  # You may pin to the exact commit or the version.
-  # uses: zaproxy/action-af@4dd5346bd6603523068d5ecbf3a366f57cdc1890
+---
+- name: ZAP Automation Framework Scan
   uses: zaproxy/action-af@v0.2.0
   with:
-    # The file system path or URL to the Automation Framework plan to run.
-    plan: 
-    # The Docker image to be used.
-    docker_name: # default is ghcr.io/zaproxy/zaproxy:stable
-    # The env vars that should be passed to the Docker container running ZAP.
-    docker_env_vars: # optional, default is 
-    # Additional command line options to start ZAP with.
-    cmd_options: # optional
-          
+    plan: null
+    docker_name: null
+    docker_env_vars: null
+    cmd_options: null
