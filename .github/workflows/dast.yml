@@ -28,7 +28,7 @@ jobs:
         report-path: './zap_report.html'  # Save the report in the root of your project
 
     - name: Upload ZAP scan report
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: zap-report
         path: './zap_report.html'  # Ensure this matches the path of the generated report
