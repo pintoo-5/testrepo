@@ -19,11 +19,6 @@ jobs:
           cmd_options: '-a'
           fail_action: false
           
-      - name: Upload ZAP HTML report
-        uses: actions/upload-artifact@v3
-        with:
-          name: zap-report
-          path: report_html.html
 
       - name: Fail if High risk vulnerabilities found
         run: |
