@@ -33,11 +33,11 @@ jobs:
         echo "Files in build:"
         ls -la ./build
     
-    - name: Upload ZAP scan report
-      uses: actions/upload-artifact@v3
-      with:
-        name: zap-report
-        path: './zap_report.html'  # Ensure this matches the path of the generated report
+   # - name: Upload ZAP scan report
+   #   uses: actions/upload-artifact@v3
+   #   with:
+    #    name: zap-report
+     #   path: './zap_report.html'  # Ensure this matches the path of the generated report
 
     - name: Clean up ZAP Docker container
       run: |
