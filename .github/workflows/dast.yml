@@ -31,7 +31,7 @@ jobs:
         # password: 'your-password'
 
     - name: Upload ZAP scan report
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v2
       with:
         name: zap-report
         path: zap_report.html  # Path to the generated ZAP report file
