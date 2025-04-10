@@ -14,14 +14,22 @@ jobs:
     - name: Checkout repo
       uses: actions/checkout@v3
 
-    - name: Start app in background
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Start app
       run: |
-        npm install
         nohup npm start &
-        sleep 10  # Wait for the app to start
+        sleep 10
 
     - name: Run OWASP ZAP Baseline Scan
       run: |
+        mkdir -p zap-report
         docker run --network="host" \
           -v ${{ github.workspace }}/zap-report:/zap/wrk/:rw \
           owasp/zap2docker-stable zap-baseline.py \
